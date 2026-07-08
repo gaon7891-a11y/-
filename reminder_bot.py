@@ -35,21 +35,26 @@ def save_reminders(reminders):
 # ---------- 슬래시 커맨드 ----------
 @tree.command(name="연장완료", description="24시간 후 연장 가능 알림을 받습니다.")
 async def extend_command(interaction: discord.Interaction):
-    now = datetime.datetime.utcnow()
-    remind_at = now + datetime.timedelta(seconds=30)
+   # 1. DB(JSON 파일) 저장용 표준 UTC 시간 계산
+    now_utc = datetime.datetime.utcnow()
+    remind_at_utc = now_utc + datetime.timedelta(hours=24)
 
     reminders = load_reminders()
     reminders.append(
         {
             "channel_id": interaction.channel_id,
             "user_id": interaction.user.id,
-            "remind_at": remind_at.isoformat(),
+            "remind_at": remind_at_utc.isoformat(),  # 저장 및 백그라운드 체크는 원래대로 UTC 기준 처리
         }
     )
     save_reminders(reminders)
 
+    # 2. 안내 메시지 출력용 한국 시간(KST = UTC + 9시간) 계산
+    remind_at_kst = remind_at_utc + datetime.timedelta(hours=9)
+
+    # 3. 유저에게는 직관적인 한국 시간(KST)으로 포맷팅하여 안내
     await interaction.response.send_message(
-        f"✅ 연장 완료! {remind_at.strftime('%Y-%m-%d %H:%M')} (UTC)에 알려드릴게요.",
+        f"✅ 연장 완료! {remind_at_kst.strftime('%Y-%m-%d %H:%M')} (KST)에 알려드릴게요.",
         ephemeral=True,
     )
 
