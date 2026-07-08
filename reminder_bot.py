@@ -11,7 +11,7 @@ import json
 import os
 import datetime
 
-TOKEN = os.environ.get("DISCORD_BOT_TOKEN", "여기에_봇_토큰_입력")
+TOKEN = os.environ.get("DISCORD_BOT_TOKEN", "MTUyNDQwOTkxNzkyOTQyMjkyMg.GLSMMN.v8G7W8dc_azFl9tt2QRbfJUdRaUfgovSIMxyKw")
 DATA_FILE = "reminders.json"
 
 intents = discord.Intents.default()
