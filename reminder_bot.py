@@ -76,7 +76,7 @@ async def check_reminders():
             if channel:
                 mention = "@everyone"
                 try:
-                    await channel.send(f"{mention} 지금 연장 가능합니다! https://hub.weirdhost.xyz/server/e8f8ef4c/ /연장완료 커맨드 잊지 마세요!")
+                    await channel.send(f"{mention} 지금 연장 가능합니다! https://hub.weirdhost.xyz/server/e8f8ef4c/ **/연장완료** 커맨드 잊지 마세요!")
                 except discord.Forbidden:
                     pass  # 채널 접근 권한 없음 등
         else:
