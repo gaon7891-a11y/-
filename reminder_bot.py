@@ -54,8 +54,9 @@ async def extend_command(interaction: discord.Interaction):
 
     # 3. 유저에게는 직관적인 한국 시간(KST)으로 포맷팅하여 안내
     await interaction.response.send_message(
-        f"✅ 연장 완료! \n"
-        f"{remind_at_kst.strftime('%Y-%m-%d %H:%M')} (KST)에 알려드릴게요.",
+        f"✅ ({interaction.user.mention} 님이 연장 완료!)\n"
+        f"서버는 오늘도 살아남았습니다! 🔥\n"
+        f"📅 다음 알림: {remind_at_kst.strftime('%Y-%m-%d %H:%M')} (KST)"
     
     )
 
@@ -79,7 +80,7 @@ async def check_reminders():
                 try:
                     await channel.send(
                         f"@everyone \n"
-                        f"🚨 **위어드호스트 연장 활성화!**\n"
+                        f"🚨 **위어드호스트 연장 활성화!** 🚨\n"
                         f"지금 바로 사이트에 접속해서 연장 버튼을 눌러주세요!\n"
                         f"🔗 링크: https://hub.weirdhost.xyz/server/e8f8ef4c/\n\n"
                         f"⚠️ 연장 후 채널에 \"/연장완료\" 커맨드 입력을 잊지 마세요!")
