@@ -37,7 +37,7 @@ def save_reminders(reminders):
 async def extend_command(interaction: discord.Interaction):
    # 1. DB(JSON 파일) 저장용 표준 UTC 시간 계산
     now_utc = datetime.datetime.utcnow()
-    remind_at_utc = now_utc + datetime.timedelta(seconds=10)
+    remind_at_utc = now_utc + datetime.timedelta(hours=24)
 
     reminders = load_reminders()
     reminders.append(
