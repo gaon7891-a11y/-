@@ -49,7 +49,7 @@ async def extend_command(interaction: discord.Interaction):
     save_reminders(reminders)
 
     await interaction.response.send_message(
-        f"✅ 등록 완료! {remind_at.strftime('%Y-%m-%d %H:%M')} (UTC)에 알려드릴게요.",
+        f"✅ 연장 완료! {remind_at.strftime('%Y-%m-%d %H:%M')} (UTC)에 알려드릴게요.",
         ephemeral=True,
     )
 
@@ -69,9 +69,9 @@ async def check_reminders():
         if now >= remind_at:
             channel = client.get_channel(r["channel_id"])
             if channel:
-                mention = f"<@{r['user_id']}>"
+                mention = "@everyone"
                 try:
-                    await channel.send(f"{mention} 지금 연장 가능합니다! https://hub.weirdhost.xyz/server/e8f8ef4c/")
+                    await channel.send(f"{mention} 지금 연장 가능합니다! https://hub.weirdhost.xyz/server/e8f8ef4c/ /연장완료 커맨드 입력해주세요!")
                 except discord.Forbidden:
                     pass  # 채널 접근 권한 없음 등
         else:
