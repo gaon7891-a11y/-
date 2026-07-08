@@ -55,7 +55,7 @@ async def extend_command(interaction: discord.Interaction):
     # 3. 유저에게는 직관적인 한국 시간(KST)으로 포맷팅하여 안내
     await interaction.response.send_message(
         f"✅ 연장 완료! {remind_at_kst.strftime('%Y-%m-%d %H:%M')} (KST)에 알려드릴게요.",
-        ephemeral=True,
+    
     )
 
 
