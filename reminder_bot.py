@@ -50,7 +50,7 @@ async def extend_command(interaction: discord.Interaction):
     save_reminders(reminders)
 
     # 2. 안내 메시지 출력용 한국 시간(KST = UTC + 9시간) 계산
-    remind_at_kst = remind_at_utc + datetime.timedelta(hours=9)
+    remind_at_kst = remind_at_utc + datetime.timedelta(seconds=9)
 
     # 3. 유저에게는 직관적인 한국 시간(KST)으로 포맷팅하여 안내
     await interaction.response.send_message(
