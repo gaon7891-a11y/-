@@ -1,6 +1,6 @@
 """
 디스코드 리마인더 봇
-- '/연장' 슬래시 커맨드 입력 시, 24시간 후 해당 채널에 '지금 연장 가능합니다' 메시지 전송
+- '/연장완료' 슬래시 커맨드 입력 시, 24시간 후 해당 채널에 '지금 연장 가능합니다' 메시지 전송
 - 봇이 재시작되어도 예약된 리마인더가 유지되도록 JSON 파일에 저장
 """
 
@@ -33,10 +33,10 @@ def save_reminders(reminders):
 
 
 # ---------- 슬래시 커맨드 ----------
-@tree.command(name="연장", description="24시간 후 연장 가능 알림을 받습니다.")
+@tree.command(name="연장완료", description="24시간 후 연장 가능 알림을 받습니다.")
 async def extend_command(interaction: discord.Interaction):
     now = datetime.datetime.utcnow()
-    remind_at = now + datetime.timedelta(hours=24)
+    remind_at = now + datetime.timedelta(seconds=30)
 
     reminders = load_reminders()
     reminders.append(
@@ -71,7 +71,7 @@ async def check_reminders():
             if channel:
                 mention = f"<@{r['user_id']}>"
                 try:
-                    await channel.send(f"{mention} 지금 연장 가능합니다")
+                    await channel.send(f"{mention} 지금 연장 가능합니다! https://hub.weirdhost.xyz/server/e8f8ef4c/")
                 except discord.Forbidden:
                     pass  # 채널 접근 권한 없음 등
         else:
